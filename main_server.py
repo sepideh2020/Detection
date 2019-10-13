@@ -1,0 +1,332 @@
+# USAGE
+# Start the server:
+# 	python main_server.py
+# Submit a request via cURL:
+# 	curl -X POST -F image=@dog.jpg 'http://localhost:5000/predict'
+# Submita a request via Python:
+#	python simple_request.py
+#!/usr/bin/env python
+
+# import the necessary packages
+from keras.preprocessing.image import img_to_array
+from keras.applications import imagenet_utils
+from PIL import Image
+import numpy as np
+import flask
+import io
+import cv2
+
+import os
+from flask import Flask, abort, request, jsonify, g, url_for
+from flask_sqlalchemy import SQLAlchemy
+from flask_httpauth import HTTPBasicAuth
+
+import json
+
+from ml_services.affective_computing import FacialExpressionModel
+
+
+from database.database import db
+from passlib.apps import custom_app_context as pwd_context
+from itsdangerous import (TimedJSONWebSignatureSerializer
+                          as Serializer, BadSignature, SignatureExpired)
+
+from flask import g
+
+from flask import Flask, render_template, redirect, url_for
+from flask_bootstrap import Bootstrap
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField
+from wtforms.validators import InputRequired, Email, Length
+from flask_sqlalchemy  import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+
+
+
+import sys
+import os
+import glob
+import re
+import numpy as np
+
+# Keras
+from keras.applications.imagenet_utils import preprocess_input, decode_predictions
+from keras.models import load_model
+from keras.preprocessing import image
+
+# Flask utils
+from flask import Flask, redirect, url_for, request, render_template
+from werkzeug.utils import secure_filename
+from gevent.pywsgi import WSGIServer
+
+def create_app():
+    # initialization
+    app = Flask(__name__)
+    app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy dog'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://////home/sepideh/Desktop/simple-keras-rest-api-emotion-detection2/database.db'
+    app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
+    bootstrap = Bootstrap(app)
+
+
+    return app
+
+app = create_app()
+
+
+# extensions
+
+
+db = SQLAlchemy(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+auth = HTTPBasicAuth()
+
+def load_models():
+	# load the pre-trained Keras model (here we are using a model
+	# pre-trained on ImageNet and provided by Keras, but you can
+	# substitute in your own networks just as easily)
+
+
+	global model_affective
+	model_affective = FacialExpressionModel("./models/model1.json", "./models/chkPt1.h5")
+
+
+
+class User(UserMixin,db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(32),unique=True,index=True)
+    password= db.Column(db.String(80))
+
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+class LoginForm(FlaskForm):
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+    remember = BooleanField('remember me')
+
+class RegisterForm(FlaskForm):
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/api/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user:
+            if check_password_hash(user.password, form.password.data):
+                login_user(user, remember=form.remember.data)
+
+                return redirect(url_for('dashboard'))
+
+        return '<h1>Invalid username or password</h1>'
+        #return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
+
+    return render_template('login.html', form=form)
+
+
+@app.route('/api/signup', methods=['GET', 'POST'])
+def signup():
+    form = RegisterForm()
+
+    if form.validate_on_submit():
+        hashed_password = generate_password_hash(form.password.data, method='sha256')
+        new_user = User(username=form.username.data, password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        return '<h1>New user has been created!</h1>'
+        #return '<h1>' + form.username.data + ' ' + form.email.data + ' ' + form.password.data + '</h1>'
+
+    return render_template('signup.html', form=form)
+
+@app.route('/api/dashboard')
+@login_required
+def dashboard():
+    return render_template('indexpred.html', name=current_user.username)
+
+@app.route('/api/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+
+
+
+
+
+
+
+
+
+#################################################################
+#implementing api end points for authentication
+
+@app.route('/api', methods=['GET'])
+def server_status():
+    return jsonify({'status': 'online'})
+
+
+@app.route('/api/users/<int:id>')
+def get_user(id):
+    user = User.query.get(id)
+    if not user:
+        abort(400)
+    return jsonify({'username': user.username})
+
+
+
+#################################################################
+#implementing api end points
+
+
+@app.route('/api/resource')
+@auth.login_required
+def get_resource():
+    # we can return some information about user here
+    return jsonify({'data': 'Hello, %s!' % g.user.username})
+
+
+@app.route("/detectfaces", methods=["POST"])
+@auth.login_required
+def detect_faces():
+    # initialize the data dictionary that will be returned from the
+    # view
+    data = {"success": False}
+
+    if flask.request.method == "POST":
+        if flask.request.files.get("image"):
+            # read the image in PIL format
+            image = flask.request.files["image"].read()
+            image = Image.open(io.BytesIO(image))
+            # convert pillow image to opencv for face detection
+            image = np.array(image)
+
+            # preprocess the image and prepare it for classification
+            # image = prepare_image(image, target=(224, 224))
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+
+            faces = model_affective.detect_faces(image)
+            data['faces'] = json.dumps(faces.tolist())
+            data["success"] = True
+    return jsonify(data)
+
+@app.route("/compare", methods=["POST"])
+@auth.login_required
+def compare():
+    # initialize the data dictionary that will be returned from the
+    # view
+    data = {"success": False}
+
+    if flask.request.method == "POST":
+        if flask.request.files.get("image1") and flask.request.files.get("image2"):
+            # read the image in PIL format
+            image1 = flask.request.files["image1"].read()
+            image1 = Image.open(io.BytesIO(image1))
+            # convert pillow image to opencv for face detection
+            image1 = np.array(image1)
+
+            image2 = flask.request.files["image2"].read()
+            image2 = Image.open(io.BytesIO(image2))
+            # convert pillow image to opencv for face detection
+            image2 = np.array(image2)
+
+            # preprocess the image and prepare it for classification
+            # image = prepare_image(image, target=(224, 224))
+            #image1 = cv2.cvtColor(image1, cv2.COLOR_RGB2GRAY)
+
+
+            faces = model_face_recognition.compare(image1, image2)
+            data['faces'] = json.dumps(faces.tolist())
+            data["success"] = True
+    return jsonify(data)
+
+
+@app.route("/detectemotion", methods=["POST"])
+@auth.login_required
+def detect_emotion():
+	# initialize the data dictionary that will be returned from the
+	# view
+	data = {"success": False}
+
+	# ensure an image was properly uploaded to our endpoint
+	if flask.request.method == "POST":
+		if flask.request.files.get("image"):
+			# read the image in PIL format
+			image = flask.request.files["image"].read()
+			image = Image.open(io.BytesIO(image))
+			# convert pillow image to opencv for face detection
+			image = np.array(image)
+
+			# preprocess the image and prepare it for classification
+			#image = prepare_image(image, target=(224, 224))
+			image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+
+			emotions = model_affective.predict_all_faces_emotion(image)
+			data['prediction'] = emotions
+			data["success"] = True
+
+	# return the data dictionary as a JSON response
+	return flask.jsonify(data)
+
+
+
+
+
+
+
+
+@app.route('/predict', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        # Get the file from post request
+        f = request.files['image']
+
+        # Save the file to ./uploads
+        basepath = os.path.dirname(__file__)
+        file_path = os.path.join(
+            basepath, 'uploads', secure_filename(f.filename))
+        f.save(file_path)
+
+        # Make prediction
+        preds = model_affective.predict_all_faces_emotion(file_path,model_affective)
+
+        # Process your result for human
+        # pred_class = preds.argmax(axis=-1)            # Simple argmax
+        pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
+        result = str(pred_class[0][0][1])               # Convert to string
+        return result
+    return None
+
+# if this is the main thread of execution first load the model and
+# then start the server
+if __name__ == "__main__":
+	print(("* Loading Keras model and Flask starting server..."
+		"please wait until server has fully started"))
+
+	load_models()
+
+	if not os.path.exists('database.db'):
+		db.create_all()
+
+
+	app.run(debug =True)
+

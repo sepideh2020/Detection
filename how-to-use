@@ -1,0 +1,22 @@
+run server via
+	python main_server.py
+send request to server via
+	curl -X POST -F image=@dog.jpg 'http://localhost:5000/detectemotion'
+
+
+# get status of the server
+curl -i -X GET http://127.0.0.1:5000/api
+# add a new user
+curl -i -X POST -H "Content-Type: application/json" -d '{"username":"mohammad","password":"python"}' http://127.0.0.1:5000/api/add_user
+# check resource
+curl -u mohammad:python -i -X GET http://127.0.0.1:5000/api/resource
+#use wrong credintials
+curl -u miguel:ruby -i -X GET http://127.0.0.1:5000/api/resource
+#get a token
+curl -u mohammad:python -i -X GET http://127.0.0.1:5000/api/token
+#request by token
+curl -u eyJhbGciOiJIUzUxMiIsImlhdCI6MTU2NTMzNDc3MywiZXhwIjoxNTY1MzM1MzczfQ.eyJpZCI6MX0.PoZ8QK4a_d0NcfTZNBGlEqeb8IYsngWEa8ijHjMF0vlfHV2ggMXv8betu-uMLIIIRD9IiFgiAS-8hp371GaAEA:x -i -X GET http://127.0.0.1:5000/api/resource
+
+curl -u eyJhbGciOiJIUzUxMiIsImlhdCI6MTU2NTIwNzY1MCwiZXhwIjoxNTY1MjA4MjUwfQ.eyJpZCI6MX0.DgEzL0V_aovzFIj0SpThJcW8rXsD89nkRSFGqHa6m88A0V6uJqliuMvsIBnyrJhz7gSjoFZeMt0Q6basN4MllQ:x -i -X POST -F image=@sad.jpg 'http://localhost:5000/detectemotion'
+
+curl -u mohammad:python -i -X POST -F image=@sad.jpg 'http://localhost:5000/detectemotion'
