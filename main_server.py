@@ -64,7 +64,7 @@ def create_app():
     # initialization
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy dog'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://////home/sepideh/Desktop/simple-keras-rest-api-emotion-detection2/database.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://////home/sepideh/Desktop/detection/database.db'
     app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
@@ -293,8 +293,7 @@ def detect_emotion():
 
 
 
-
-@app.route('/predict', methods=['GET', 'POST'])
+'''''@app.route('/predict', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
         # Get the file from post request
@@ -306,15 +305,54 @@ def upload():
             basepath, 'uploads', secure_filename(f.filename))
         f.save(file_path)
 
+        img = cv2.imread(file_path)
+        # cv2.imshow('tt', img)
+        # cv2.waitKey(2000)
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+
         # Make prediction
-        preds = model_affective.predict_all_faces_emotion(file_path,model_affective)
+        #preds = model_affective.predict_all_faces_emotion(file_path,model_affective)
+        preds = model_affective.predict_all_faces_emotion(img)
 
         # Process your result for human
         # pred_class = preds.argmax(axis=-1)            # Simple argmax
         pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
         result = str(pred_class[0][0][1])               # Convert to string
         return result
+    return None '''
+
+
+
+from PIL import Image
+@app.route('/predict', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        # Get the file from post request
+        f = request.files['image']
+
+        # Save the file to ./uploads
+        basepath = os.path.dirname(__file__)
+        file_path = os.path.join(
+            basepath, 'uploads', secure_filename(f.filename))
+        f.save(file_path)
+        img = cv2.imread(file_path)
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        #predict=Image.open(img)
+        # Make prediction
+        preds = model_affective.predict_all_faces_emotion(img)
+
+        # Process your result for human
+        # pred_class = preds.argmax(axis=-1)            # Simple argmax
+        #pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
+        result = str(preds)               # Convert to string
+
+        return result
     return None
+
+
+
+
+
 
 # if this is the main thread of execution first load the model and
 # then start the server
