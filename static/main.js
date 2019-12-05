@@ -39,6 +39,7 @@ $(document).ready(function () {
             data: form_data,
             contentType: false,
             cache: false,
+
             processData: false,
             async: true,
             success: function (data) {
@@ -46,6 +47,7 @@ $(document).ready(function () {
                 $('.loader').hide();
                 $('#result').fadeIn(600);
                 $('#result').text(' Result:  ' + data);
+                $('#result').append('<img src="' + data + '" />');
                 console.log('Success!');
             },
         });

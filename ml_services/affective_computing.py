@@ -23,6 +23,7 @@ from PIL import Image
 from keras.models import model_from_json
 import numpy as np
 import tensorflow as tf
+import cv2
 
 
 class FacialExpressionModel(object):
@@ -34,10 +35,14 @@ class FacialExpressionModel(object):
         print('initialization')
 
 
+       ###tf. get_default_graph() always returns the current computation graph????
         self.graph = tf.get_default_graph()
 
 
         self.face_detecor = cv2.CascadeClassifier('./models/haarcascade_frontalface_default.xml')
+
+
+
 
         # load model from JSON file
         with open(model_json_file, "r") as json_file:
@@ -45,15 +50,15 @@ class FacialExpressionModel(object):
             self.loaded_model = model_from_json(loaded_model_json)
 
         # load weights into the new model
-        self.loaded_model.load_weights(model_weights_file)
+        self.loaded_model.load_weights(model_weights_file)   ###manzor az weight chie???
         print("Model loaded from disk")
-        self.loaded_model.summary()
+        self.loaded_model.summary()  ###summary chie???
 
-    def predict_emotion(self, img):
+    def predict_emotion(self, img):  ##???
         with self.graph.as_default():
-            self.preds = self.loaded_model.predict(img)
+            self.preds = self.loaded_model.predict(img)    ###precict khali tarif nakardim ke??
 
-        return FacialExpressionModel.EMOTIONS_LIST[np.argmax(self.preds)]
+        return FacialExpressionModel.EMOTIONS_LIST[np.argmax(self.preds)], self.preds
 
     def predict_all_faces_emotion(self, img):
         faces = self.detect_faces(img)
@@ -62,12 +67,21 @@ class FacialExpressionModel(object):
             fc = img[y:y + h, x:x + w]
 
             roi = cv2.resize(fc, (48, 48))
-            pred = self.predict_emotion(roi[np.newaxis, :, :, np.newaxis])
+            pred, all_types = self.predict_emotion(roi[np.newaxis, :, :, np.newaxis]) ##????
             result.append(pred)
-        return result
+        return result, faces, all_types
 
     def detect_faces(self, image):
+
         return self.face_detecor.detectMultiScale(image, 1.3, 5)
+
+        ###chand ta chizo shenasaie kone ya siz ro taghir mide??
+      ###detectMultiScale function (line 10) is used to detect the faces.
+    # It takes 3 arguments — the input image, scaleFactor and minNeighbours.
+    # scaleFactor specifies how much the image size is reduced with each scale.
+    # minNeighbours specifies how many neighbors each candidate rectangle should have to retain it.
+    # You can read about it in detail here.
+
 
 
 if __name__ == '__main__':
@@ -77,7 +91,7 @@ if __name__ == '__main__':
 # In[4]:
 
 
-import cv2
+
 
 
 #get and image and detect emotion
@@ -87,20 +101,22 @@ def detect_emotion_image(image):
     model = FacialExpressionModel("./models/model1.json", "./models/chkPt1.h5")
     #image = image.convert('LA')
 
-    faces = model.detect_faces(image)
+    faces = model.detect_faces(image)  ###detect face male open cv hast ya hamoni ke bala neveshtime??
     result = []
-    for (x, y, w, h) in faces:
+    for (x, y, w, h) in faces: ##???
             fc = image[y:y+h, x:x+w]
-
             roi = cv2.resize(fc, (48, 48))
-            pred = model.predict_emotion(roi[np.newaxis, :, :, np.newaxis])
-            result.append( pred)
-    return result
+            pred = model.predict_emotion(roi[np.newaxis, :, :, np.newaxis]) ###barye peredicte balas??
+            result.append(pred)
+    return result, faces
     
 if __name__ == "__main__":
-    img = cv2.imread('sad.jpg')
+
+    img = cv2.imread("dog.jpg")
     #cv2.imshow('tt', img)
     #cv2.waitKey(2000)
+    #The detection works only on grayscale images.
+    # So it is important to convert the color image to grayscale.
     img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
     #img = Image.open('sad.jpg')

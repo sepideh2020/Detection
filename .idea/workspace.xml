@@ -2,17 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab944f9c-26bc-4523-8e9b-660a252027fc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/detection.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dog.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_services/affective_computing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_services/affective_computing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_services/face_detection.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/starter-template.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/starter-template.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/indexpred.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/indexpred.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/download.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/errorrest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/human.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/human.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/human2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/images_1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/line.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/panda-649938__340.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/panda.jpeg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,11 +39,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6402">
-              <caret line="341" column="42" selection-start-line="341" selection-start-column="42" selection-end-line="341" selection-end-column="42" />
+            <state relative-caret-position="94">
+              <caret line="345" column="14" lean-forward="true" selection-start-line="345" selection-start-column="14" selection-end-line="345" selection-end-column="14" />
               <folding>
                 <element signature="e#262#312#0" expanded="true" />
               </folding>
@@ -34,23 +51,66 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ml_services/affective_computing.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+            <state relative-caret-position="-528">
+              <caret line="9" column="14" selection-start-line="8" selection-end-line="9" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
               <folding>
-                <element signature="e#43#61#0" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../keras-flask-deploy-webapp/app.py">
+        <entry file="file://$PROJECT_DIR$/templates/indexpred.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1166">
-              <caret line="69" selection-start-line="69" selection-end-line="69" />
+            <state relative-caret-position="154">
+              <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ml_services/affective_computing.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="71" column="39" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
+              <folding>
+                <element signature="e#43#61#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -60,7 +120,18 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>main.css</find>
+      <find>print</find>
+      <find>result</find>
+      <find>predict</find>
+      <find>Result</find>
+      <find>emotion</find>
+      <find>Emotion Re</find>
+      <find>FacialExpressionModel</find>
+      <find>model_affective</find>
     </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/static</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -74,8 +145,23 @@
         <option value="$PROJECT_DIR$/BachelorProject/templates/main.js" />
         <option value="$PROJECT_DIR$/BachelorProject/templates/indexpred.html" />
         <option value="$PROJECT_DIR$/BachelorProject/templates/login.html" />
-        <option value="$PROJECT_DIR$/main_server.py" />
+        <option value="$PROJECT_DIR$/static/signin.css" />
+        <option value="$PROJECT_DIR$/database/database.py" />
+        <option value="$PROJECT_DIR$/config/config.py" />
+        <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/static/starter-template.css" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/templates/base1.html" />
+        <option value="$PROJECT_DIR$/templates/main.css" />
+        <option value="$PROJECT_DIR$/static/main.css" />
+        <option value="$PROJECT_DIR$/templates/dashboard.html" />
+        <option value="$PROJECT_DIR$/templates/signup.html" />
+        <option value="$PROJECT_DIR$/templates/login.html" />
+        <option value="$PROJECT_DIR$/templates/indexpred.html" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/static/main.js" />
         <option value="$PROJECT_DIR$/ml_services/affective_computing.py" />
+        <option value="$PROJECT_DIR$/main_server.py" />
       </list>
     </option>
   </component>
@@ -91,6 +177,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -101,18 +188,43 @@
             <path>
               <item name="detection" type="b2602c69:ProjectViewProjectNode" />
               <item name="detection" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="detection" type="b2602c69:ProjectViewProjectNode" />
+              <item name="detection" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="detection" type="b2602c69:ProjectViewProjectNode" />
+              <item name="detection" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="detection" type="b2602c69:ProjectViewProjectNode" />
+              <item name="detection" type="462c0819:PsiDirectoryNode" />
+              <item name="ml_services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="detection" type="b2602c69:ProjectViewProjectNode" />
+              <item name="detection" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="detection" type="b2602c69:ProjectViewProjectNode" />
+              <item name="detection" type="462c0819:PsiDirectoryNode" />
+              <item name="uploads" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -133,7 +245,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main_server">
+    <configuration name="affective_computing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="detection" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_services" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml_services/affective_computing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main_server" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="detection" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -158,6 +291,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main_server" />
+        <item itemvalue="Python.affective_computing" />
       </list>
     </recent_temporary>
   </component>
@@ -178,13 +312,13 @@
     <frame x="64" y="-4" width="1857" height="1085" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info id="DB Browser" order="3" />
+      <window_info id="DB Browser" order="3" weight="0.32969433" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3294979" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3420502" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39958158" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -193,48 +327,11 @@
       <window_info anchor="bottom" id="DB Execution Console" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="11" weight="0.3294979" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info id="DB Browser" order="0" />
-      <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.25" />
-      <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="DB Execution Console" order="0" />
-      <window_info anchor="bottom" id="Version Control" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="2" />
-      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="4" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" />
-      <window_info anchor="bottom" id="Run" order="7" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main_server.py</url>
-          <line>339</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ml_services/affective_computing.py</url>
-          <line>58</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../flaskLoggingBoot/finish/app.py">
@@ -278,39 +375,193 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/main.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/main.css">
+    <entry file="file://$PROJECT_DIR$/../keras-flask-deploy-webapp/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="545">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main_server.py">
+    <entry file="file://$PROJECT_DIR$/ml_services/face_detection.py" />
+    <entry file="file://$PROJECT_DIR$/database/database.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6402">
-          <caret line="341" column="42" selection-start-line="341" selection-start-column="42" selection-end-line="341" selection-end-column="42" />
+        <state relative-caret-position="22">
+          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="3" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="640">
+          <caret line="82" column="4" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="4" />
           <folding>
-            <element signature="e#262#312#0" expanded="true" />
+            <element signature="e#0#59#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../keras-flask-deploy-webapp/app.py">
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/haarcascade_frontalface_default.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1166">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        <state relative-caret-position="-11088" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/main.css" />
+    <entry file="file://$PROJECT_DIR$/static/signin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="31" column="22" lean-forward="true" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_services/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="50" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="103" selection-start-line="7" selection-start-column="103" selection-end-line="7" selection-end-column="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple_request.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main.js" />
+    <entry file="file://$PROJECT_DIR$/static/js/main.js" />
+    <entry file="file://$PROJECT_DIR$/templates/base1.html" />
+    <entry file="file://$PROJECT_DIR$/static/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1078">
+          <caret line="49" column="1" lean-forward="true" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main.css" />
+    <entry file="file://$PROJECT_DIR$/static/starter-template.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/dashboard.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-66" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_services/face_recognition.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="860">
+          <caret line="59" column="18" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/detection/main_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="349" column="15" lean-forward="true" selection-start-line="324" selection-end-line="349" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="20" column="10" selection-start-line="15" selection-start-column="3" selection-end-line="20" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-528">
+          <caret line="9" column="14" selection-start-line="8" selection-end-line="9" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/model1.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/indexpred.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/signup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="26" selection-start-column="22" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2019.1/system/python_stubs/1561105398/cv2/cv2/CascadeClassifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ml_services/affective_computing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+        <state relative-caret-position="357">
+          <caret line="71" column="39" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
           <folding>
             <element signature="e#43#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="345" column="14" lean-forward="true" selection-start-line="345" selection-start-column="14" selection-end-line="345" selection-end-column="14" />
+          <folding>
+            <element signature="e#262#312#0" expanded="true" />
           </folding>
         </state>
       </provider>

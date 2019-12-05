@@ -60,10 +60,19 @@ from flask import Flask, redirect, url_for, request, render_template
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
+
+
+
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+from PIL import Image
+import numpy as np
+from matplotlib.patches import Rectangle
+
 def create_app():
     # initialization
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy dog'
+    app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy dog'   ###code kardan cookie eteghalesh be browser??
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://////home/sepideh/Desktop/detection/database.db'
     app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
@@ -100,8 +109,8 @@ class User(UserMixin,db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32),unique=True,index=True)
-    password= db.Column(db.String(80))
-
+    password = db.Column(db.String(80))
+31
 
 
 @login_manager.user_loader
@@ -112,7 +121,7 @@ def load_user(user_id):
 class LoginForm(FlaskForm):
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
-    remember = BooleanField('remember me')
+    remember = BooleanField('remember me')   #karn nemikone
 
 class RegisterForm(FlaskForm):
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
@@ -170,13 +179,6 @@ def logout():
 
 
 
-
-
-
-
-
-
-
 #################################################################
 #implementing api end points for authentication
 
@@ -198,7 +200,7 @@ def get_user(id):
 #implementing api end points
 
 
-@app.route('/api/resource')
+@app.route('/api/resource')             ###niyaze in a alan ba tavajoh be in ke lofin darim??/
 @auth.login_required
 def get_resource():
     # we can return some information about user here
@@ -208,13 +210,12 @@ def get_resource():
 @app.route("/detectfaces", methods=["POST"])
 @auth.login_required
 def detect_faces():
-    # initialize the data dictionary that will be returned from the
-    # view
+    # initialize the data dictionary that will be returned from the view
     data = {"success": False}
 
     if flask.request.method == "POST":
         if flask.request.files.get("image"):
-            # read the image in PIL format
+            # read the image in PIL(Python Imaging Library) format
             image = flask.request.files["image"].read()
             image = Image.open(io.BytesIO(image))
             # convert pillow image to opencv for face detection
@@ -222,21 +223,26 @@ def detect_faces():
 
             # preprocess the image and prepare it for classification
             # image = prepare_image(image, target=(224, 224))
+
+
+            #For color conversion, we use the function
+            # cv2.cvtColor(input_image, flag) where flag determines the type of conversion.
+            #For BGR to Gray conversion we use the flags cv2.COLOR_BGR2GRAY
             image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
-            faces = model_affective.detect_faces(image)
+            faces = model_affective.detect_faces(image)    ###alan mifahme bayad az file
+                                                           ### affective_computing.py estefade kone?
             data['faces'] = json.dumps(faces.tolist())
             data["success"] = True
     return jsonify(data)
 
 @app.route("/compare", methods=["POST"])
-@auth.login_required
+@auth.login_required           ###mige ghablesh tabe login bayad ejra beshe?
 def compare():
-    # initialize the data dictionary that will be returned from the
-    # view
+    # initialize the data dictionary that will be returned from the view
     data = {"success": False}
 
-    if flask.request.method == "POST":
+    if flask.request.method == "POST":       ###chetor bayad piyade sazish konim baraye moghayese?
         if flask.request.files.get("image1") and flask.request.files.get("image2"):
             # read the image in PIL format
             image1 = flask.request.files["image1"].read()
@@ -254,8 +260,9 @@ def compare():
             #image1 = cv2.cvtColor(image1, cv2.COLOR_RGB2GRAY)
 
 
-            faces = model_face_recognition.compare(image1, image2)
+            faces = model_face_recognition.compare(image1, image2)  ###????
             data['faces'] = json.dumps(faces.tolist())
+
             data["success"] = True
     return jsonify(data)
 
@@ -263,8 +270,7 @@ def compare():
 @app.route("/detectemotion", methods=["POST"])
 @auth.login_required
 def detect_emotion():
-	# initialize the data dictionary that will be returned from the
-	# view
+	# initialize the data dictionary that will be returned from the view
 	data = {"success": False}
 
 	# ensure an image was properly uploaded to our endpoint
@@ -280,11 +286,11 @@ def detect_emotion():
 			#image = prepare_image(image, target=(224, 224))
 			image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
-			emotions = model_affective.predict_all_faces_emotion(image)
+			emotions = model_affective.predict_all_faces_emotion(image)   ###az che fili mikhone?
 			data['prediction'] = emotions
 			data["success"] = True
 
-	# return the data dictionary as a JSON response
+	# return the da ta dictionary as a JSON response
 	return flask.jsonify(data)
 
 
@@ -321,7 +327,7 @@ def upload():
         return result
     return None '''
 
-
+from PIL import Image, ImageDraw
 
 from PIL import Image
 @app.route('/predict', methods=['GET', 'POST'])
@@ -336,22 +342,36 @@ def upload():
             basepath, 'uploads', secure_filename(f.filename))
         f.save(file_path)
         img = cv2.imread(file_path)
+        # print(img)
+        print("AAA")
         img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         #predict=Image.open(img)
         # Make prediction
-        preds = model_affective.predict_all_faces_emotion(img)
+        preds, faces, all_types = model_affective.predict_all_faces_emotion(img)
+        print(all_types)
+        img = cv2.imread(file_path)
 
+        for i in faces:
+            cv2.rectangle(img, (i[0], i[1]), (i[2], i[3]), (int(random.random() * 256), int(random.random() * 256), int(random.random() * 256)), 2)
+        cv2.imwrite(file_path , img)
+        # print(file_path)
         # Process your result for human
         # pred_class = preds.argmax(axis=-1)            # Simple argmax
         #pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
         result = str(preds)               # Convert to string
 
-        return result
+
+        return (file_path)
+
+
+
+        #return result
+
     return None
 
 
 
-
+import random
 
 
 # if this is the main thread of execution first load the model and
@@ -366,5 +386,5 @@ if __name__ == "__main__":
 		db.create_all()
 
 
-	app.run(debug =True)
+	app.run(debug =True)    ###az koja shoro mikone be run harkodomom seda function ie ro seda konim run mikone?
 
