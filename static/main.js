@@ -23,6 +23,9 @@ $(document).ready(function () {
         $('#result').hide();
         readURL(this);
     });
+var arrayMaxIndex = function(array) {
+  return array.indexOf(Math.max.apply(null, array));
+};
 
     // Predict
     $('#btn-predict').click(function () {
@@ -43,13 +46,56 @@ $(document).ready(function () {
             processData: false,
             async: true,
             success: function (data) {
+
                 // Get and display the result
                 $('.loader').hide();
                 $('#result').fadeIn(600);
-                $('#result').text(' Result:  ' + data);
-                $('#result').append('<img src="' + data + '" />');
-                console.log('Success!');
+                data = data.replace("]","")
+                data = data.replace("[","")
+                data = data.replace("'","")
+                data = data.replace(" ","")
+                data = data.split(",")
+
+                $('#result0').html("Angry" + data[0])
+                $('#result1').html(" Disgust/fear/surprise" + data[1])
+                $('#result2').html(" Sad" + data[2])
+                $('#result3').html("Happy" + data[3])
+                $('#result4').html("Neutral" + data[4])
+                urlOfImg = data.pop()
+                console.log(data)
+                data = data.map(Number);
+                console.log(data)
+                var indexOfMaxValue = arrayMaxIndex(data)
+                console.log(indexOfMaxValue);
+                var state = "UnKnown"
+                switch(indexOfMaxValue) {
+                      case 0:
+                        state = " Angry"
+                        break;
+                      case 1:
+                        state = " Disgust/fear/surprise"
+                        break;
+                      case 2:
+                        state = "Sad"
+                        break;
+                      case 3:
+                        state = "Happy"
+                        break;
+                      default:
+                      state = "Neutral"
+                        break;
+                    }
+                $('#imagePreview').html('<img src="/static/images/' + urlOfImg.replace(/\s+/g, '').replace("'","") + '"/>')
+                $('#result5').html(state)
+
             },
+             error: function(xhr, textStatus, error) {
+                    console.log(xhr.responseText);
+                    console.log(xhr.statusText);
+                    console.log(textStatus);
+                    console.log(error);
+
+                  }
         });
     });
 

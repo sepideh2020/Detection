@@ -62,6 +62,7 @@ class FacialExpressionModel(object):
 
     def predict_all_faces_emotion(self, img):
         faces = self.detect_faces(img)
+
         result = []
         for (x, y, w, h) in faces:
             fc = img[y:y + h, x:x + w]
@@ -69,6 +70,7 @@ class FacialExpressionModel(object):
             roi = cv2.resize(fc, (48, 48))
             pred, all_types = self.predict_emotion(roi[np.newaxis, :, :, np.newaxis]) ##????
             result.append(pred)
+
         return result, faces, all_types
 
     def detect_faces(self, image):

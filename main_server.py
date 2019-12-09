@@ -338,8 +338,7 @@ def upload():
 
         # Save the file to ./uploads
         basepath = os.path.dirname(__file__)
-        file_path = os.path.join(
-            basepath, 'uploads', secure_filename(f.filename))
+        file_path = os.path.join(basepath, 'static/images', secure_filename(f.filename))
         f.save(file_path)
         img = cv2.imread(file_path)
         # print(img)
@@ -348,24 +347,33 @@ def upload():
         #predict=Image.open(img)
         # Make prediction
         preds, faces, all_types = model_affective.predict_all_faces_emotion(img)
-        print(all_types)
+        # print(all_types)
         img = cv2.imread(file_path)
 
-        for i in faces:
-            cv2.rectangle(img, (i[0], i[1]), (i[2], i[3]), (int(random.random() * 256), int(random.random() * 256), int(random.random() * 256)), 2)
+        for (x,y,w,h) in faces:
+            #fc = img[y:y + h, x:x + w]
+            cv2.rectangle(img,(x,y),(x+w,y+h),(int(random.random() * 256), int(random.random() * 256),int(random.random() * 256)), 2)
+
         cv2.imwrite(file_path , img)
+
         # print(file_path)
         # Process your result for human
         # pred_class = preds.argmax(axis=-1)            # Simple argmax
         #pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
         result = str(preds)               # Convert to string
+        stt = ""
+        a = file_path.split('/')
+        stt =a[7]
+        # all_types.append(stt)
+        # returnVal = [stt, all_types[0]]
+        print("_______________________laksndlasd______")
+        all_types = all_types.tolist()[0]
+        all_types.append(stt)
+        print(all_types)
+        return str(all_types)
 
 
-        return (file_path)
 
-
-
-        #return result
 
     return None
 
