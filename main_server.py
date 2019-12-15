@@ -327,7 +327,8 @@ def upload():
         return result
     return None '''
 
-from PIL import Image, ImageDraw
+def double_quote(word):
+    return '"%s"' % word
 
 from PIL import Image
 @app.route('/predict', methods=['GET', 'POST'])
@@ -356,21 +357,20 @@ def upload():
 
         cv2.imwrite(file_path , img)
 
-        # print(file_path)
-        # Process your result for human
-        # pred_class = preds.argmax(axis=-1)            # Simple argmax
-        #pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
-        result = str(preds)               # Convert to string
-        stt = ""
         a = file_path.split('/')
         stt =a[7]
+        print(stt)
+        retVal = []
         # all_types.append(stt)
         # returnVal = [stt, all_types[0]]
-        print("_______________________laksndlasd______")
-        all_types = all_types.tolist()[0]
         all_types.append(stt)
-        print(all_types)
-        return str(all_types)
+        retVal = []
+
+        retVal.append(len(all_types))
+        for i in range(len(all_types)):
+            retVal.append(str(all_types[i]))
+
+        return str(retVal)
 
 
 
