@@ -61,17 +61,25 @@ var arrayMaxIndex = function(array) {
 
 
                 data = data.split(',')
-                n = parseInt(data[0])
+                n = parseInt(data[0]) - 1
                 urlOfI = data[n]
+                console.log(data)
 
+                imgUrl = data.pop()
+                data.shift()
+                console.log(data)
+                console.log("ASds")
+                console.log(n)
       retStr = "status:  "
+      listOfPerson = []
                 sadasd = []
-                for (i = 1; i < n ; i++) {
-                  splited = data[i].split(" ")
-                  splited.pop()
-                  splited.shift()
+                for (i = 0; i < n ; i++) {
+                  splited = data[i].trim().split(" ")
+//                  splited.shift()                splited.pop()
+
                     map1 = splited.map(x => Number(x * 100))
                     sadasd = map1
+                    listOfPerson.push(sadasd)
                     var indexOfMaxValue = arrayMaxIndex(map1)
                     console.log(indexOfMaxValue)
 
@@ -96,10 +104,84 @@ var arrayMaxIndex = function(array) {
                       state = "Neutral"
                         break;
                     }
-
                     retStr = retStr.concat("the person Number ", i, " is ", state , " ")
 
                 }
+
+
+
+console.log(listOfPerson)
+
+                    infoList = []
+                    console.log(n)
+                    console.log("This is N")
+
+                    switch(n) {
+                      case 1:
+                        infoList =  [
+                            {
+                            label: 'Pesron 1',
+                            data: [{x: 1, y: listOfPerson[0][0]}, {x: 2, y: listOfPerson[0][1]}, {x: 3, y: listOfPerson[0][2]},{x: 4, y: listOfPerson[0][3]},{x: 4, y: listOfPerson[0][4]}],
+                            showLine: true,
+                            fill: false,
+                            borderColor: 'rgba(0, 200, 0, 1)'
+                            }
+                        ]
+                        break;
+                      case 2:
+                    infoList =  [
+                            {
+                            label: 'Pesron 1',
+                            data: [{x: 1, y: listOfPerson[0][0]}, {x: 2, y: listOfPerson[0][1]}, {x: 3, y: listOfPerson[0][2]},{x: 4, y: listOfPerson[0][3]},{x: 4, y: listOfPerson[0][4]}],
+                            showLine: true,
+                            fill: false,
+                            borderColor: 'rgba(134, 100, 0, 1)'
+                            },
+                            {
+                            label: 'Person 2',
+                            data: [{x: 1, y: listOfPerson[1][0]}, {x: 2, y: listOfPerson[1][1]}, {x: 3, y: listOfPerson[1][2]},{x: 4, y: listOfPerson[1][3]},{x: 4, y: listOfPerson[1][4]}],
+                            showLine: true,
+                            fill: false,
+                            borderColor: 'rgba(0, 200, 0, 1)'
+                            }
+                        ]
+                        break;
+                      case 3:
+                            infoList =  [
+                            {
+                            label: 'Pesron 1',
+                            data: [{x: 1, y: listOfPerson[0][0]}, {x: 2, y: listOfPerson[0][1]}, {x: 3, y: listOfPerson[0][2]},{x: 4, y: listOfPerson[0][3]},{x: 4, y: listOfPerson[0][4]}],
+                            showLine: true,
+                            fill: false,
+                            borderColor: 'rgba(134, 100, 0, 1)'
+                            },
+                            {
+                            label: 'Person 2',
+                            data: [{x: 1, y: listOfPerson[1][0]}, {x: 2, y: listOfPerson[1][1]}, {x: 3, y: listOfPerson[1][2]},{x: 4, y: listOfPerson[1][3]},{x: 4, y: listOfPerson[1][4]}],
+                            showLine: true,
+                            fill: false,
+                            borderColor: 'rgba(0, 200, 0, 1)'
+                            },
+                            {
+                            label: 'Person 3',
+                            data: [{x: 1, y: listOfPerson[2][0]}, {x: 2, y: listOfPerson[2][1]}, {x: 3, y: listOfPerson[2][2]},{x: 4, y: listOfPerson[2][3]},{x: 4, y: listOfPerson[2][4]}],
+                            showLine: true,
+                            fill: false,
+                            borderColor: 'rgba(87, 32, 76, 1)'
+                            }
+                        ]
+                        break;
+                      case 3:
+                        state = "Happy"
+                        break;
+                      default:
+                      state = "Neutral"
+                        break;
+                    }
+
+
+
+
 
                     console.log(retStr)
 
@@ -118,23 +200,17 @@ var arrayMaxIndex = function(array) {
 
 
                  urlOfI = urlOfI.split(" ").join("");
-                $('#imgPre').html('<img src="/static/images/' + urlOfI + '"/>')
+                $('#imgPre').html('<img src="/static/images/' + imgUrl.trim() + '"/>')
 //                $('#result5').html(state)
 
    var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
+   var chart = new Chart(ctx, {  type: 'scatter',
+
 
     // The data for our dataset
     data: {
-        labels: ['Angry', 'Disgust', 'Sad', 'Happy', 'Neutral'],
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [map1[0],map1[1],map1[2],map1[3]]
-        }]
+        labels: ['Angry', 'Disgust/fear/Suprise', 'Sad', 'Happy', 'Neutral'],
+        datasets: infoList
     },
 
     // Configuration options go here
