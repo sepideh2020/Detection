@@ -1,9 +1,14 @@
 .img-preview {
-    width: 256px;
-    height: 256px;
+width: 346px;
+    height: 275px;
     position: relative;
+    background-size: contain;
+
 
 }
+
+
+
 .imHidden{
     display: none !important
     }
@@ -12,12 +17,13 @@ width: 100%;
 
 height: 100%;
 
-background-size: auto;
+background-size: contain;
 
 background-repeat: no-repeat;
 
 background-position: left;
 }
+
 
 input[type="file"] {
     display: none;

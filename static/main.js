@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     // Upload Preview
     function readURL(input) {
-        if (input.files && input.files[0]) {
+        if (input.files && input.files[0]) { //???
             var reader = new FileReader();
             reader.onload = function (e) {
                 $('box').html('    <div class="image-section" style="display:none;"><div class="img-preview holder"><div id="imagePreview"></div></div><div><div  id="imgPre"></div>     <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>  </div>    </div>')
@@ -32,7 +32,9 @@ var arrayMaxIndex = function(array) {
     $('')
     // Predict
     $('#btn-predict').click(function () {
-        var form_data = new FormData($('#upload-file')[0]);
+        var form_data = new FormData($('#upload-file')[0]);  //???
+         console.log("this is form data")
+         console.log(form_data)   //??????
 
         // Show loading animation
         $(this).hide();
@@ -54,7 +56,7 @@ var arrayMaxIndex = function(array) {
 
 
 
-                data = data.split("]").join("");
+                data = data.split("]").join(""); //??
                 data = data.split("[").join("");
                 data = data.split("'").join("");
                 data = data.split("  ").join(" ");
@@ -74,7 +76,7 @@ var arrayMaxIndex = function(array) {
       listOfPerson = []
                 sadasd = []
                 for (i = 0; i < n ; i++) {
-                  splited = data[i].trim().split(" ")
+                  splited = data[i].trim().split(" ")  //???
 //                  splited.shift()                splited.pop()
 
                     map1 = splited.map(x => Number(x * 100))
@@ -104,7 +106,7 @@ var arrayMaxIndex = function(array) {
                       state = "Neutral"
                         break;
                     }
-                    retStr = retStr.concat("the person Number ", i, " is ", state , " ")
+                   retStr = retStr.concat("Person Number ", i+1, " is ", state , "<br/> ")
 
                 }
 
@@ -120,70 +122,107 @@ console.log(listOfPerson)
                       case 1:
                         infoList =  [
                             {
-                            label: 'Pesron 1',
+                            label: 'Person 1',
                             data: [{x: 1, y: listOfPerson[0][0]}, {x: 2, y: listOfPerson[0][1]}, {x: 3, y: listOfPerson[0][2]},{x: 4, y: listOfPerson[0][3]},{x: 4, y: listOfPerson[0][4]}],
                             showLine: true,
                             fill: false,
-                            borderColor: 'rgba(0, 200, 0, 1)'
+                            borderColor: '	rgb(128,0,128)',
+                            backgroundColor:'	rgb(128,0,128)'
                             }
                         ]
                         break;
                       case 2:
                     infoList =  [
                             {
-                            label: 'Pesron 1',
+                            label: 'Person  1',
                             data: [{x: 1, y: listOfPerson[0][0]}, {x: 2, y: listOfPerson[0][1]}, {x: 3, y: listOfPerson[0][2]},{x: 4, y: listOfPerson[0][3]},{x: 4, y: listOfPerson[0][4]}],
                             showLine: true,
                             fill: false,
-                            borderColor: 'rgba(134, 100, 0, 1)'
+                            borderColor: '	rgb(128,0,128)',
+                            backgroundColor:'rgb(128,0,128)'
                             },
                             {
                             label: 'Person 2',
                             data: [{x: 1, y: listOfPerson[1][0]}, {x: 2, y: listOfPerson[1][1]}, {x: 3, y: listOfPerson[1][2]},{x: 4, y: listOfPerson[1][3]},{x: 4, y: listOfPerson[1][4]}],
                             showLine: true,
                             fill: false,
-                            borderColor: 'rgba(0, 200, 0, 1)'
+                            borderColor:'rgb(204, 0, 0)',
+                            backgroundColor:'rgb(204, 0, 0)'
                             }
                         ]
                         break;
                       case 3:
                             infoList =  [
                             {
-                            label: 'Pesron 1',
+                            label: 'Person  1',
                             data: [{x: 1, y: listOfPerson[0][0]}, {x: 2, y: listOfPerson[0][1]}, {x: 3, y: listOfPerson[0][2]},{x: 4, y: listOfPerson[0][3]},{x: 4, y: listOfPerson[0][4]}],
                             showLine: true,
                             fill: false,
-                            borderColor: 'rgba(134, 100, 0, 1)'
+                            borderColor: 'rgb(128,0,128)',
+                            backgroundColor:'rgb(128,0,128)'
                             },
                             {
                             label: 'Person 2',
                             data: [{x: 1, y: listOfPerson[1][0]}, {x: 2, y: listOfPerson[1][1]}, {x: 3, y: listOfPerson[1][2]},{x: 4, y: listOfPerson[1][3]},{x: 4, y: listOfPerson[1][4]}],
                             showLine: true,
                             fill: false,
-                            borderColor: 'rgba(0, 200, 0, 1)'
+                            borderColor:'rgb(204, 0, 0)',
+                            backgroundColor:'rgb(204, 0, 0)'
                             },
                             {
                             label: 'Person 3',
                             data: [{x: 1, y: listOfPerson[2][0]}, {x: 2, y: listOfPerson[2][1]}, {x: 3, y: listOfPerson[2][2]},{x: 4, y: listOfPerson[2][3]},{x: 4, y: listOfPerson[2][4]}],
                             showLine: true,
                             fill: false,
-                            borderColor: 'rgba(87, 32, 76, 1)'
+                            borderColor: 'rgb(0, 255, 0)',
+                            backgroundColor: 'rgb(0, 255, 0)'
                             }
                         ]
                         break;
-                      case 3:
-                        state = "Happy"
+                      case 4:
+                         infoList =  [
+                            {
+                            label: 'Person  1',
+                            data: [{x: 1, y: listOfPerson[0][0]}, {x: 2, y: listOfPerson[0][1]}, {x: 3, y: listOfPerson[0][2]},{x: 4, y: listOfPerson[0][3]},{x: 4, y: listOfPerson[0][4]}],
+                            showLine: true,
+                            fill: false,
+                            borderColor: 'rgb(128,0,128)',
+                            backgroundColor:'	rgb(128,0,128)'
+                            },
+                            {
+                            label: 'Person 2',
+                            data: [{x: 1, y: listOfPerson[1][0]}, {x: 2, y: listOfPerson[1][1]}, {x: 3, y: listOfPerson[1][2]},{x: 4, y: listOfPerson[1][3]},{x: 4, y: listOfPerson[1][4]}],
+                            showLine: true,
+                            fill: false,
+                            borderColor:'rgb(204, 0, 0)',
+                            backgroundColor:'rgb(204, 0, 0)'
+                            },
+                            {
+                            label: 'Person 3',
+                            data: [{x: 1, y: listOfPerson[2][0]}, {x: 2, y: listOfPerson[2][1]}, {x: 3, y: listOfPerson[2][2]},{x: 4, y: listOfPerson[2][3]},{x: 4, y: listOfPerson[2][4]}],
+                            showLine: true,
+                            fill: false,
+                            borderColor: 'rgb(0, 255, 0)',
+                            backgroundColor: 'rgb(0, 255, 0)'
+                            },
+                            {
+                            label: 'Person 4',
+                            data: [{x: 1, y: listOfPerson[3][0]}, {x: 2, y: listOfPerson[3][1]}, {x: 3, y: listOfPerson[3][2]},{x: 4, y: listOfPerson[3][3]},{x: 4, y: listOfPerson[3][4]}],
+                            showLine: true,
+                            fill: false,
+                            borderColor: 'rgb(0, 0, 204)',
+                            backgroundColor:'rgb(0, 0, 204)'
+                            }
+                        ]
                         break;
-                      default:
-                      state = "Neutral"
-                        break;
+
                     }
 
 
 
 
 
-                    console.log(retStr)
+                   console.log(retStr)
 
           // Get and display the result
                 $('.loader').hide();
@@ -191,7 +230,7 @@ console.log(listOfPerson)
 
                 $('#imagePreview').fadeOut(650);
 
-                $('#result0').html(retStr)
+                  $('#result0').html(retStr)
 //                $('#result1').html(" Disgust/fear/surprise" + data[1])
 //                $('#result2').html(" Sad" + data[2])
 //                $('#result3').html("Happy" + data[3])
@@ -204,7 +243,7 @@ console.log(listOfPerson)
 //                $('#result5').html(state)
 
    var ctx = document.getElementById('myChart').getContext('2d');
-   var chart = new Chart(ctx, {  type: 'scatter',
+   var chart = new Chart(ctx, {  type: 'bar',
 
 
     // The data for our dataset

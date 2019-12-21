@@ -108,7 +108,7 @@ def load_models():
 class User(UserMixin,db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(32),unique=True,index=True)
+    username = db.Column(db.String(32), unique=True,index=True)
     password = db.Column(db.String(80))
 31
 
@@ -154,6 +154,11 @@ def login():
 @app.route('/api/signup', methods=['GET', 'POST'])
 def signup():
     form = RegisterForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user:
+            return '<h1>user already exists</h1>'
+
 
     if form.validate_on_submit():
         hashed_password = generate_password_hash(form.password.data, method='sha256')
@@ -163,6 +168,7 @@ def signup():
 
         return '<h1>New user has been created!</h1>'
         #return '<h1>' + form.username.data + ' ' + form.email.data + ' ' + form.password.data + '</h1>'
+
 
     return render_template('signup.html', form=form)
 
@@ -304,22 +310,18 @@ def upload():
     if request.method == 'POST':
         # Get the file from post request
         f = request.files['image']
-
         # Save the file to ./uploads
         basepath = os.path.dirname(__file__)
         file_path = os.path.join(
             basepath, 'uploads', secure_filename(f.filename))
         f.save(file_path)
-
         img = cv2.imread(file_path)
         # cv2.imshow('tt', img)
         # cv2.waitKey(2000)
         img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-
         # Make prediction
         #preds = model_affective.predict_all_faces_emotion(file_path,model_affective)
         preds = model_affective.predict_all_faces_emotion(img)
-
         # Process your result for human
         # pred_class = preds.argmax(axis=-1)            # Simple argmax
         pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
@@ -337,7 +339,7 @@ def upload():
         # Get the file from post request
         f = request.files['image']
 
-        # Save the file to ./uploads
+        # Save the file to ./static/images
         basepath = os.path.dirname(__file__)
         file_path = os.path.join(basepath, 'static/images', secure_filename(f.filename))
         f.save(file_path)
@@ -350,10 +352,19 @@ def upload():
         preds, faces, all_types = model_affective.predict_all_faces_emotion(img)
         # print(all_types)
         img = cv2.imread(file_path)
-
+        t =0
         for (x,y,w,h) in faces:
             #fc = img[y:y + h, x:x + w]
-            cv2.rectangle(img,(x,y),(x+w,y+h),(int(random.random() * 256), int(random.random() * 256),int(random.random() * 256)), 2)
+            t +=1
+            if t ==1:
+                s =(128,0,128)
+            if t==2:
+                s =(0, 0, 255)
+            if t==3:
+                s =(0, 255, 0)
+            if t==4:
+                s=( 255,69,0)
+            cv2.rectangle(img,(x,y),(x+w,y+h),s, 2)
 
         cv2.imwrite(file_path , img)
 
@@ -395,4 +406,3 @@ if __name__ == "__main__":
 
 
 	app.run(debug =True)    ###az koja shoro mikone be run harkodomom seda function ie ro seda konim run mikone?
-
