@@ -239,7 +239,7 @@ console.log(listOfPerson)
 
 
                  urlOfI = urlOfI.split(" ").join("");
-                $('#imgPre').html('<img src="/static/images/' + imgUrl.trim() + '"/>')
+                $('#imgPre').html('<img src="/static/images/' + imgUrl.trim() + '" class="theimage"/>')
 //                $('#result5').html(state)
 
    var ctx = document.getElementById('myChart').getContext('2d');

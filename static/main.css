@@ -24,7 +24,10 @@ background-repeat: no-repeat;
 background-position: left;
 }
 
-
+.theImage{
+width:380px;
+height:auto
+}
 input[type="file"] {
     display: none;
 }
