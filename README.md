@@ -22,21 +22,3 @@ The model which used for emotion detection is not very accurate and sometimes ca
 
 
 The other problem of this model is that sometimes does not predict emotions correctly.
-
-
-
-
-
-
-
-
-
-
-
-
-As it can be seen the model predicted that Person 1 emotion is angry.
-
-
-
-
-
